@@ -1,8 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, BarChart3, ChevronDown, Globe, Shield, Star, Users } from "lucide-react"
+import { ArrowRight, BarChart3, ChevronDown, Globe, Shield, Star, Users, ArrowLeftRight, LineChart, Activity, Wallet, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -11,11 +11,16 @@ import { ProductCard } from "@/components/product-card"
 import { AnimatedCounter } from "@/components/animated-counter"
 import { TestimonialCarousel } from "@/components/testimonial-carousel"
 import { GreedFearIndex } from "@/components/greed-fear-index"
-import { CagrCalculator } from "@/components/cagr-calculator"
+import { CagrCalculator } from "@/components/tools/CagrCalculator"
 import { AnimatedGradient } from "@/components/animated-gradient"
 import { Logo } from "@/components/logo"
 import { StrategyComparison } from "@/components/strategy-comparison"
 import { AssetClassMatrix } from "@/components/asset-class-matrix"
+import { InvestmentComparison } from "@/components/tools/InvestmentComparison"
+import { PortfolioTracker } from "@/components/tools/PortfolioTracker"
+import { RiskAssessment } from "@/components/tools/RiskAssessment"
+import { MarketSentiment } from "@/components/tools/MarketSentiment"
+import { RetirementPlanner } from "@/components/tools/RetirementPlanner"
 
 export default function Home() {
   return (
@@ -90,43 +95,43 @@ export default function Home() {
         {/* Value Proposition */}
         <section className="py-16 md:py-24 bg-muted/50">
           <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card className="p-4 md:p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
                 <div className="mb-4 rounded-full bg-primary/10 p-3 w-12 h-12 flex items-center justify-center">
                   <Star className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-serif text-xl font-bold">Expertly Curated PMS & AIFs</h3>
-                <p className="mt-2 text-muted-foreground">
+                <h3 className="font-serif text-lg md:text-xl font-bold">Expertly Curated PMS & AIFs</h3>
+                <p className="mt-2 text-sm md:text-base text-muted-foreground">
                   Handpicked portfolio management services and alternative investment funds for optimal returns.
                 </p>
               </Card>
 
-              <Card className="p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
+              <Card className="p-4 md:p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
                 <div className="mb-4 rounded-full bg-primary/10 p-3 w-12 h-12 flex items-center justify-center">
                   <Globe className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-serif text-xl font-bold">GIFT City Advantages</h3>
-                <p className="mt-2 text-muted-foreground">
+                <h3 className="font-serif text-lg md:text-xl font-bold">GIFT City Advantages</h3>
+                <p className="mt-2 text-sm md:text-base text-muted-foreground">
                   Access international markets with tax benefits through Gujarat International Finance Tec-City.
                 </p>
               </Card>
 
-              <Card className="p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
+              <Card className="p-4 md:p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
                 <div className="mb-4 rounded-full bg-primary/10 p-3 w-12 h-12 flex items-center justify-center">
                   <BarChart3 className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-serif text-xl font-bold">Comparison Tools</h3>
-                <p className="mt-2 text-muted-foreground">
+                <h3 className="font-serif text-lg md:text-xl font-bold">Comparison Tools</h3>
+                <p className="mt-2 text-sm md:text-base text-muted-foreground">
                   Interactive tools to compare different investment products and strategies side by side.
                 </p>
               </Card>
 
-              <Card className="p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
+              <Card className="p-4 md:p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
                 <div className="mb-4 rounded-full bg-primary/10 p-3 w-12 h-12 flex items-center justify-center">
                   <Users className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-serif text-xl font-bold">Dedicated Wealth Manager</h3>
-                <p className="mt-2 text-muted-foreground">
+                <h3 className="font-serif text-lg md:text-xl font-bold">Dedicated Wealth Manager</h3>
+                <p className="mt-2 text-sm md:text-base text-muted-foreground">
                   Personal guidance from experienced professionals to help navigate your investment journey.
                 </p>
               </Card>
@@ -137,9 +142,9 @@ export default function Home() {
         {/* Product Comparison */}
         <section id="comparison" className="py-16 md:py-24 bg-muted/50">
           <div className="container">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="font-serif text-3xl font-bold tracking-tight md:text-4xl">Investment Products Comparison</h2>
-              <p className="mt-4 text-muted-foreground">
+            <div className="mx-auto max-w-3xl text-center mb-8 md:mb-12">
+              <h2 className="font-serif text-2xl md:text-3xl font-bold tracking-tight lg:text-4xl">Investment Products Comparison</h2>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground">
                 Compare different investment options to make informed decisions aligned with your financial goals.
               </p>
             </div>
@@ -330,101 +335,105 @@ export default function Home() {
         {/* Educational Section */}
         <section id="education" className="py-16 md:py-24">
           <div className="container">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="font-serif text-3xl font-bold tracking-tight md:text-4xl">
+            <div className="mx-auto max-w-3xl text-center mb-8 md:mb-12">
+              <h2 className="font-serif text-2xl md:text-3xl font-bold tracking-tight lg:text-4xl">
                 Understanding Investment Products
               </h2>
-              <p className="mt-4 text-muted-foreground">
+              <p className="mt-4 text-sm md:text-base text-muted-foreground">
                 Compare different investment vehicles to make informed decisions about your financial future.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <Card className="p-6 h-full">
-                <h3 className="font-serif text-xl font-bold mb-4">Mutual Funds vs PMS vs AIF vs SIF</h3>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-5 gap-2 text-sm font-medium">
-                    <div className="col-span-1"></div>
-                    <div className="col-span-1 text-center">MF</div>
-                    <div className="col-span-1 text-center">PMS</div>
-                    <div className="col-span-1 text-center">AIF</div>
-                    <div className="col-span-1 text-center">SIF</div>
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
+              <Card className="p-4 md:p-6 h-full overflow-hidden">
+                <h3 className="font-serif text-lg md:text-xl font-bold mb-4">Mutual Funds vs PMS vs AIF vs SIF</h3>
+                <div className="space-y-4 overflow-x-auto">
+                  <div className="min-w-[500px] md:min-w-0">
+                    <div className="grid grid-cols-5 gap-2 text-sm font-medium">
+                      <div className="col-span-1"></div>
+                      <div className="col-span-1 text-center">MF</div>
+                      <div className="col-span-1 text-center">PMS</div>
+                      <div className="col-span-1 text-center">AIF</div>
+                      <div className="col-span-1 text-center">SIF</div>
+                    </div>
 
-                  <div className="grid grid-cols-5 gap-2 text-sm border-b pb-2">
-                    <div className="col-span-1">Min. Investment</div>
-                    <div className="col-span-1 text-center">₹500</div>
-                    <div className="col-span-1 text-center">₹50L</div>
-                    <div className="col-span-1 text-center">₹1Cr</div>
-                    <div className="col-span-1 text-center">$100K</div>
-                  </div>
+                    <div className="grid grid-cols-5 gap-2 text-sm border-b pb-2 mt-2">
+                      <div className="col-span-1">Min. Investment</div>
+                      <div className="col-span-1 text-center">₹500</div>
+                      <div className="col-span-1 text-center">₹50L</div>
+                      <div className="col-span-1 text-center">₹1Cr</div>
+                      <div className="col-span-1 text-center">$100K</div>
+                    </div>
 
-                  <div className="grid grid-cols-5 gap-2 text-sm border-b pb-2">
-                    <div className="col-span-1">Customization</div>
-                    <div className="col-span-1 text-center">None</div>
-                    <div className="col-span-1 text-center">High</div>
-                    <div className="col-span-1 text-center">Medium</div>
-                    <div className="col-span-1 text-center">Medium</div>
-                  </div>
+                    <div className="grid grid-cols-5 gap-2 text-sm border-b pb-2 mt-2">
+                      <div className="col-span-1">Customization</div>
+                      <div className="col-span-1 text-center">None</div>
+                      <div className="col-span-1 text-center">High</div>
+                      <div className="col-span-1 text-center">Medium</div>
+                      <div className="col-span-1 text-center">Medium</div>
+                    </div>
 
-                  <div className="grid grid-cols-5 gap-2 text-sm border-b pb-2">
-                    <div className="col-span-1">Taxation</div>
-                    <div className="col-span-1 text-center">LTCG/STCG</div>
-                    <div className="col-span-1 text-center">LTCG/STCG</div>
-                    <div className="col-span-1 text-center">Pass-through</div>
-                    <div className="col-span-1 text-center">Tax Adv.</div>
-                  </div>
+                    <div className="grid grid-cols-5 gap-2 text-sm border-b pb-2 mt-2">
+                      <div className="col-span-1">Taxation</div>
+                      <div className="col-span-1 text-center">LTCG/STCG</div>
+                      <div className="col-span-1 text-center">LTCG/STCG</div>
+                      <div className="col-span-1 text-center">Pass-through</div>
+                      <div className="col-span-1 text-center">Tax Adv.</div>
+                    </div>
 
-                  <div className="grid grid-cols-5 gap-2 text-sm">
-                    <div className="col-span-1">Regulation</div>
-                    <div className="col-span-1 text-center">SEBI</div>
-                    <div className="col-span-1 text-center">SEBI</div>
-                    <div className="col-span-1 text-center">SEBI</div>
-                    <div className="col-span-1 text-center">IFSCA</div>
+                    <div className="grid grid-cols-5 gap-2 text-sm mt-2">
+                      <div className="col-span-1">Regulation</div>
+                      <div className="col-span-1 text-center">SEBI</div>
+                      <div className="col-span-1 text-center">SEBI</div>
+                      <div className="col-span-1 text-center">SEBI</div>
+                      <div className="col-span-1 text-center">IFSCA</div>
+                    </div>
                   </div>
                 </div>
                 <div className="mt-6">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full text-sm">
                     Learn More
                   </Button>
                 </div>
               </Card>
 
-              <Card className="p-6 h-full">
-                <h3 className="font-serif text-xl font-bold mb-4">Active vs Passive Investing</h3>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-3 gap-2 text-sm font-medium">
-                    <div className="col-span-1"></div>
-                    <div className="col-span-1 text-center">Active</div>
-                    <div className="col-span-1 text-center">Passive</div>
-                  </div>
+              <Card className="p-4 md:p-6 h-full overflow-hidden">
+                <h3 className="font-serif text-lg md:text-xl font-bold mb-4">Active vs Passive Investing</h3>
+                <div className="space-y-4 overflow-x-auto">
+                  <div className="min-w-[400px] md:min-w-0">
+                    <div className="grid grid-cols-3 gap-2 text-sm font-medium">
+                      <div className="col-span-1"></div>
+                      <div className="col-span-1 text-center">Active</div>
+                      <div className="col-span-1 text-center">Passive</div>
+                    </div>
 
-                  <div className="grid grid-cols-3 gap-2 text-sm border-b pb-2">
-                    <div className="col-span-1">Management Style</div>
-                    <div className="col-span-1 text-center">Hands-on</div>
-                    <div className="col-span-1 text-center">Index-based</div>
-                  </div>
+                    <div className="grid grid-cols-3 gap-2 text-sm border-b pb-2 mt-2">
+                      <div className="col-span-1">Management Style</div>
+                      <div className="col-span-1 text-center">Hands-on</div>
+                      <div className="col-span-1 text-center">Index-based</div>
+                    </div>
 
-                  <div className="grid grid-cols-3 gap-2 text-sm border-b pb-2">
-                    <div className="col-span-1">Fees</div>
-                    <div className="col-span-1 text-center">Higher</div>
-                    <div className="col-span-1 text-center">Lower</div>
-                  </div>
+                    <div className="grid grid-cols-3 gap-2 text-sm border-b pb-2 mt-2">
+                      <div className="col-span-1">Fees</div>
+                      <div className="col-span-1 text-center">Higher</div>
+                      <div className="col-span-1 text-center">Lower</div>
+                    </div>
 
-                  <div className="grid grid-cols-3 gap-2 text-sm border-b pb-2">
-                    <div className="col-span-1">Alpha Generation</div>
-                    <div className="col-span-1 text-center">Possible</div>
-                    <div className="col-span-1 text-center">Not Possible</div>
-                  </div>
+                    <div className="grid grid-cols-3 gap-2 text-sm border-b pb-2 mt-2">
+                      <div className="col-span-1">Alpha Generation</div>
+                      <div className="col-span-1 text-center">Possible</div>
+                      <div className="col-span-1 text-center">Not Possible</div>
+                    </div>
 
-                  <div className="grid grid-cols-3 gap-2 text-sm">
-                    <div className="col-span-1">Risk Management</div>
-                    <div className="col-span-1 text-center">Customized</div>
-                    <div className="col-span-1 text-center">Market Risk</div>
+                    <div className="grid grid-cols-3 gap-2 text-sm mt-2">
+                      <div className="col-span-1">Risk Management</div>
+                      <div className="col-span-1 text-center">Customized</div>
+                      <div className="col-span-1 text-center">Market Risk</div>
+                    </div>
                   </div>
                 </div>
                 <div className="mt-6">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full text-sm">
                     Learn More
                   </Button>
                 </div>
@@ -443,7 +452,7 @@ export default function Home() {
                     <Button className="w-full">Access Full Calculator</Button>
                   </div>
                   <div className="md:w-1/2 bg-muted p-6">
-                    <CagrCalculator preview={true} />
+                    <CagrCalculator />
                   </div>
                 </div>
               </Card>
@@ -683,6 +692,168 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Tools Hub Section */}
+        <section id="tools" className="py-16 md:py-24 bg-gradient-to-b from-muted/50 to-background">
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-center mb-12">
+              <h2 className="font-serif text-3xl md:text-4xl font-bold tracking-tight lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
+                Financial Tools Suite
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Professional-grade tools to enhance your investment decisions
+              </p>
+            </div>
+
+            <Tabs defaultValue="cagr" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 gap-4 bg-transparent h-auto p-4">
+                <TabsTrigger 
+                  value="cagr" 
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-muted/50 transition-colors group"
+                >
+                  <BarChart3 className="h-5 w-5" />
+                  <div className="text-center">
+                    <div className="font-medium">CAGR Calculator</div>
+                    <div className="text-xs text-muted-foreground group-data-[state=active]:text-primary-foreground/80">Calculate growth</div>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="comparison"
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-muted/50 transition-colors group"
+                >
+                  <ArrowLeftRight className="h-5 w-5" />
+                  <div className="text-center">
+                    <div className="font-medium">Investment Comparison</div>
+                    <div className="text-xs text-muted-foreground group-data-[state=active]:text-primary-foreground/80">Compare options</div>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="portfolio"
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-muted/50 transition-colors group"
+                >
+                  <LineChart className="h-5 w-5" />
+                  <div className="text-center">
+                    <div className="font-medium">Portfolio Tracker</div>
+                    <div className="text-xs text-muted-foreground group-data-[state=active]:text-primary-foreground/80">Monitor investments</div>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="risk"
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-muted/50 transition-colors group"
+                >
+                  <Shield className="h-5 w-5" />
+                  <div className="text-center">
+                    <div className="font-medium">Risk Assessment</div>
+                    <div className="text-xs text-muted-foreground group-data-[state=active]:text-primary-foreground/80">Evaluate risk</div>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="market"
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-muted/50 transition-colors group"
+                >
+                  <Activity className="h-5 w-5" />
+                  <div className="text-center">
+                    <div className="font-medium">Market Sentiment</div>
+                    <div className="text-xs text-muted-foreground group-data-[state=active]:text-primary-foreground/80">Track markets</div>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="retirement"
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-muted/50 transition-colors group"
+                >
+                  <Wallet className="h-5 w-5" />
+                  <div className="text-center">
+                    <div className="font-medium">Retirement Planner</div>
+                    <div className="text-xs text-muted-foreground group-data-[state=active]:text-primary-foreground/80">Plan future</div>
+                  </div>
+                </TabsTrigger>
+              </TabsList>
+
+              <div className="mt-8">
+                <Card className="border-none shadow-lg overflow-hidden">
+                  <TabsContent value="cagr" className="m-0 focus-visible:outline-none focus-visible:ring-0">
+                    <div className="p-6 border-b bg-muted/30">
+                      <h3 className="font-serif text-2xl font-bold mb-2">CAGR Calculator</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Calculate the Compound Annual Growth Rate to understand your investment's performance over time.
+                      </p>
+                    </div>
+                    <div className="p-6">
+                      <CagrCalculator />
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="comparison" className="m-0 focus-visible:outline-none focus-visible:ring-0">
+                    <div className="p-6 border-b bg-muted/30">
+                      <h3 className="font-serif text-2xl font-bold mb-2">Investment Comparison</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Compare different investment options side by side to make informed portfolio decisions.
+                      </p>
+                    </div>
+                    <div className="p-6">
+                      <InvestmentComparison />
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="portfolio" className="m-0 focus-visible:outline-none focus-visible:ring-0">
+                    <div className="p-6 border-b bg-muted/30">
+                      <h3 className="font-serif text-2xl font-bold mb-2">Portfolio Tracker</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Monitor and analyze your investment portfolio with our comprehensive tracking tools.
+                      </p>
+                    </div>
+                    <div className="p-6">
+                      <PortfolioTracker />
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="risk" className="m-0 focus-visible:outline-none focus-visible:ring-0">
+                    <div className="p-6 border-b bg-muted/30">
+                      <h3 className="font-serif text-2xl font-bold mb-2">Risk Assessment</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Evaluate your risk tolerance and receive personalized investment recommendations.
+                      </p>
+                    </div>
+                    <div className="p-6">
+                      <RiskAssessment />
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="market" className="m-0 focus-visible:outline-none focus-visible:ring-0">
+                    <div className="p-6 border-b bg-muted/30">
+                      <h3 className="font-serif text-2xl font-bold mb-2">Market Sentiment</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Get real-time insights into market trends and sentiment indicators.
+                      </p>
+                    </div>
+                    <div className="p-6">
+                      <MarketSentiment />
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="retirement" className="m-0 focus-visible:outline-none focus-visible:ring-0">
+                    <div className="p-6 border-b bg-muted/30">
+                      <h3 className="font-serif text-2xl font-bold mb-2">Retirement Planner</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Plan your retirement with our advanced calculator and get personalized insights.
+                      </p>
+                    </div>
+                    <div className="p-6">
+                      <RetirementPlanner />
+                    </div>
+                  </TabsContent>
+                </Card>
+
+                <div className="mt-8 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <Shield className="h-4 w-4" />
+                  <span>Need help with these tools?</span>
+                  <Button variant="link" className="text-primary h-auto p-0">Schedule a consultation</Button>
+                  <span>with our experts.</span>
+                </div>
+              </div>
+            </Tabs>
+          </div>
+        </section>
+
         {/* Final CTA */}
         <section className="py-16 md:py-24">
           <div className="container">
@@ -786,19 +957,19 @@ export default function Home() {
               <ul className="space-y-2">
                 <li>
                   <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    info@jhaverisecurities.com
+                    info@jhaveritrade.com
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    +91 22 1234 5678
+                    91-265-6161200/7161200
                   </Link>
                 </li>
                 <li>
                   <p className="text-sm text-muted-foreground">
-                    Jhaveri Tower, Financial District,
+                    301/302 Payal Tower-II,Opp. M. S. University,
                     <br />
-                    Mumbai 400051, India
+                    Sayajigunj, Vadodara 390020
                   </p>
                 </li>
               </ul>
