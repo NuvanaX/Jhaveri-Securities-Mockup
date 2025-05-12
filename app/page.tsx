@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, BarChart3, ChevronDown, Globe, Shield, Star, Users, ArrowLeftRight, LineChart, Activity, Wallet, Clock } from "lucide-react"
+import { ArrowRight, BarChart3, ChevronDown, Globe, Shield, Star, Users, ArrowLeftRight, LineChart, Activity, Wallet, Clock, Phone, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -76,21 +76,33 @@ export default function Home() {
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto backdrop-blur-sm bg-primary/90 hover:bg-primary/80 transition-all shadow-lg"
+                  className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-medium px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  Schedule a Consultation
+                  Schedule Free Consultation
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="w-full sm:w-auto backdrop-blur-sm bg-background/50 hover:bg-background/70 transition-all"
                 >
-                  Explore Products
+                  Download Investment Guide
                 </Button>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Floating CTA Button */}
+        <div className="fixed bottom-8 right-8 z-50">
+          <Button
+            size="lg"
+            className="bg-primary hover:bg-primary/90 text-white font-medium px-6 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <Phone className="h-5 w-5 mr-2" />
+            Talk to an Expert
+          </Button>
+        </div>
 
         {/* Value Proposition */}
         <section className="py-16 md:py-24 bg-muted/50">
@@ -104,6 +116,9 @@ export default function Home() {
                 <p className="mt-2 text-sm md:text-base text-muted-foreground">
                   Handpicked portfolio management services and alternative investment funds for optimal returns.
                 </p>
+                <Button variant="link" className="mt-4 p-0 h-auto text-primary">
+                  Learn More <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
               </Card>
 
               <Card className="p-4 md:p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
@@ -114,6 +129,9 @@ export default function Home() {
                 <p className="mt-2 text-sm md:text-base text-muted-foreground">
                   Access international markets with tax benefits through Gujarat International Finance Tec-City.
                 </p>
+                <Button variant="link" className="mt-4 p-0 h-auto text-primary">
+                  Learn More <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
               </Card>
 
               <Card className="p-4 md:p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
@@ -124,6 +142,9 @@ export default function Home() {
                 <p className="mt-2 text-sm md:text-base text-muted-foreground">
                   Interactive tools to compare different investment products and strategies side by side.
                 </p>
+                <Button variant="link" className="mt-4 p-0 h-auto text-primary">
+                  Learn More <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
               </Card>
 
               <Card className="p-4 md:p-6 transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] bg-card">
@@ -134,6 +155,9 @@ export default function Home() {
                 <p className="mt-2 text-sm md:text-base text-muted-foreground">
                   Personal guidance from experienced professionals to help navigate your investment journey.
                 </p>
+                <Button variant="link" className="mt-4 p-0 h-auto text-primary">
+                  Learn More <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
               </Card>
             </div>
           </div>
@@ -252,11 +276,14 @@ export default function Home() {
           <div className="container">
             <div className="mx-auto max-w-xl">
               <div className="text-center mb-8">
+                <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4 inline-block">
+                  Limited Time Offer
+                </span>
                 <h2 className="font-serif text-3xl font-bold tracking-tight md:text-4xl">
-                  Let's Start Your Wealth Journey
+                  Start Your Wealth Journey Today
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  Connect with our expert advisors to explore investment opportunities tailored to your financial goals.
+                  Schedule a consultation and receive our exclusive 2025 Investment Guide worth ₹5,000 for free!
                 </p>
               </div>
 
@@ -305,29 +332,50 @@ export default function Home() {
                         <SelectValue placeholder="Select your investment interest" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="pms">Portfolio Management Services</SelectItem>
-                        <SelectItem value="aif">Alternative Investment Funds</SelectItem>
-                        <SelectItem value="gift">GIFT City Investments</SelectItem>
-                        <SelectItem value="all">All of the above</SelectItem>
+                        <SelectItem value="pms">Portfolio Management Services (Min ₹50L)</SelectItem>
+                        <SelectItem value="aif">Alternative Investment Funds (Min ₹1Cr)</SelectItem>
+                        <SelectItem value="gift">GIFT City Investments (Min $100K)</SelectItem>
+                        <SelectItem value="all">Interested in All Options</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="flex items-start space-x-2">
-                    <Checkbox id="investment-guide" />
+                    <Checkbox id="investment-guide" defaultChecked />
                     <label htmlFor="investment-guide" className="text-sm text-muted-foreground">
-                      Send me the 2025 PMS & AIF Investment Guide (PDF)
+                      Yes, send me the free 2025 PMS & AIF Investment Guide (Worth ₹5,000)
                     </label>
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary transition-all duration-300"
+                    className="w-full bg-primary hover:bg-primary/90 text-white py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
                   >
-                    Connect with Advisor
+                    Schedule Free Consultation
+                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
+
+                  <p className="text-xs text-center text-muted-foreground mt-4">
+                    By submitting this form, you agree to our privacy policy and terms of service.
+                    <br />Your information is secure and will not be shared.
+                  </p>
                 </form>
               </Card>
+
+              <div className="mt-8 grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <div className="font-serif text-2xl font-bold text-primary">2500+</div>
+                  <div className="text-sm text-muted-foreground">Happy Clients</div>
+                </div>
+                <div>
+                  <div className="font-serif text-2xl font-bold text-primary">₹5000Cr+</div>
+                  <div className="text-sm text-muted-foreground">Assets Managed</div>
+                </div>
+                <div>
+                  <div className="font-serif text-2xl font-bold text-primary">25+</div>
+                  <div className="text-sm text-muted-foreground">Years Experience</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -626,17 +674,19 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="overflow-hidden">
-                <div className="relative h-48">
+              <Card className="overflow-hidden group">
+                <div className="relative h-48 overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=200&width=400"
-                    alt="Top PMS Funds"
+                    src="/insights/pms-funds.svg"
+                    alt="Top performing PMS funds chart showing growth trends"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    priority
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl font-bold mb-2">Top PMS Funds in India (2025)</h3>
+                <div className="p-6 relative">
+                  <h3 className="font-serif text-xl font-bold mb-2 group-hover:text-primary transition-colors">Top PMS Funds in India (2025)</h3>
                   <p className="text-sm text-muted-foreground mb-4">
                     An in-depth analysis of the best performing Portfolio Management Services in India and what makes
                     them stand out.
@@ -647,17 +697,19 @@ export default function Home() {
                 </div>
               </Card>
 
-              <Card className="overflow-hidden">
-                <div className="relative h-48">
+              <Card className="overflow-hidden group">
+                <div className="relative h-48 overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=200&width=400"
-                    alt="GIFT City Investments"
+                    src="/insights/gift-city.png"
+                    alt="Aerial view of GIFT City financial district"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    priority
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl font-bold mb-2">Understanding GIFT City Investments</h3>
+                <div className="p-6 relative">
+                  <h3 className="font-serif text-xl font-bold mb-2 group-hover:text-primary transition-colors">Understanding GIFT City Investments</h3>
                   <p className="text-sm text-muted-foreground mb-4">
                     A comprehensive guide to investing through Gujarat International Finance Tec-City and its unique
                     advantages.
@@ -668,17 +720,19 @@ export default function Home() {
                 </div>
               </Card>
 
-              <Card className="overflow-hidden">
-                <div className="relative h-48">
+              <Card className="overflow-hidden group">
+                <div className="relative h-48 overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=200&width=400"
-                    alt="Alternative Investments"
+                    src="/insights/alternative-investments.png"
+                    alt="Diverse alternative investment options visualization"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    priority
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-xl font-bold mb-2">The Rise of Alternative Investments</h3>
+                <div className="p-6 relative">
+                  <h3 className="font-serif text-xl font-bold mb-2 group-hover:text-primary transition-colors">The Rise of Alternative Investments</h3>
                   <p className="text-sm text-muted-foreground mb-4">
                     Exploring how Alternative Investment Funds are becoming an essential component of high-net-worth
                     portfolios.
@@ -843,11 +897,17 @@ export default function Home() {
                   </TabsContent>
                 </Card>
 
-                <div className="mt-8 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                  <Shield className="h-4 w-4" />
-                  <span>Need help with these tools?</span>
-                  <Button variant="link" className="text-primary h-auto p-0">Schedule a consultation</Button>
-                  <span>with our experts.</span>
+                <div className="mt-8 flex items-center justify-center gap-2 text-sm">
+                  <div className="bg-muted/30 p-4 rounded-lg text-center">
+                    <Shield className="h-6 w-6 text-primary mx-auto mb-2" />
+                    <p className="font-medium mb-1">Need Expert Guidance?</p>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      Get personalized assistance from our financial experts
+                    </p>
+                    <Button className="bg-primary hover:bg-primary/90 text-white">
+                      Book Your Consultation
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Tabs>
@@ -857,38 +917,71 @@ export default function Home() {
         {/* Final CTA */}
         <section className="py-16 md:py-24">
           <div className="container">
-            <Card className="p-8 md:p-12 bg-card">
+            <Card className="p-8 md:p-12 bg-gradient-to-r from-primary/10 to-primary/5">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div>
+                  <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4 inline-block">
+                    Special Offer
+                  </span>
                   <h2 className="font-serif text-3xl font-bold tracking-tight md:text-4xl mb-4">
-                    Ready to Elevate Your Investment Strategy?
+                    Ready to Transform Your Investment Strategy?
                   </h2>
-                  <p className="text-muted-foreground mb-6">
-                    Schedule a consultation with our expert advisors to explore investment opportunities tailored to
-                    your financial goals.
+                  <p className="text-muted-foreground mb-2">
+                    Book your consultation now and receive:
                   </p>
+                  <ul className="mt-4 space-y-2 mb-6">
+                    <li className="flex items-center gap-2">
+                      <Check className="h-5 w-5 text-primary" />
+                      Free 2025 Investment Guide (Worth ₹5,000)
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-5 w-5 text-primary" />
+                      Personalized Portfolio Analysis
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-5 w-5 text-primary" />
+                      Tax Optimization Strategy
+                    </li>
+                  </ul>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary transition-all duration-300"
+                      className="bg-primary hover:bg-primary/90 text-white font-medium px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                      Schedule a Consultation
+                      Schedule Free Consultation
+                      <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                     <Button size="lg" variant="outline">
-                      Download Investment Guide
+                      <Phone className="mr-2 h-5 w-5" />
+                      Call Us Now
                     </Button>
                   </div>
                 </div>
 
                 <div className="space-y-4">
-                  <form className="space-y-4">
-                    <Input placeholder="Your Name" className="rounded-lg shadow-sm" />
-                    <Input placeholder="Your Email" type="email" className="rounded-lg shadow-sm" />
-                    <Input placeholder="Your Phone" className="rounded-lg shadow-sm" />
-                    <Button type="submit" className="w-full">
-                      Connect with Advisor
-                    </Button>
-                  </form>
+                  <div className="bg-background p-6 rounded-lg">
+                    <div className="flex items-center gap-4 mb-4">
+                      <Star className="h-8 w-8 text-yellow-500" />
+                      <div>
+                        <div className="font-medium">Excellent</div>
+                        <div className="text-sm text-muted-foreground">Based on 500+ reviews</div>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="border-l-4 border-primary/30 pl-4 py-2">
+                        <p className="italic text-sm">
+                          "The consultation was eye-opening. Their expertise helped me restructure my portfolio for better returns."
+                        </p>
+                        <p className="text-sm font-medium mt-2">— Senior Professional, Mumbai</p>
+                      </div>
+                      <div className="border-l-4 border-primary/30 pl-4 py-2">
+                        <p className="italic text-sm">
+                          "Their GIFT City investment guidance has been invaluable. Highly recommend their services."
+                        </p>
+                        <p className="text-sm font-medium mt-2">— Business Owner, Bangalore</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Card>
