@@ -7,7 +7,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
+import { ChevronRight, TrendingUp, ShieldAlert, Wallet, LineChart } from 'lucide-react';
 
 interface AssetClass {
   name: string;
@@ -203,18 +205,126 @@ function MatrixCell({ value, assetClass, parameter }: {
 
 export function AssetClassMatrix() {
   const [hoveredAsset, setHoveredAsset] = useState<string | null>(null);
+  const [selectedAsset, setSelectedAsset] = useState<string>(assetClasses[0].name);
+
+  // Helper function to get parameter icon
+  const getParameterIcon = (param: string) => {
+    switch(param) {
+      case 'Risk': return <ShieldAlert className="h-5 w-5" />;
+      case 'Return Potential': return <TrendingUp className="h-5 w-5" />;
+      case 'Liquidity': return <Wallet className="h-5 w-5" />;
+      case 'Volatility': return <LineChart className="h-5 w-5" />;
+      default: return null;
+    }
+  };
 
   return (
     <div className="w-full space-y-8">
-      <div className="overflow-x-auto">
-        <div className="min-w-[800px] bg-white rounded-2xl shadow-xl p-8">
+      {/* Mobile View */}
+      <div className="md:hidden">
+        <Tabs defaultValue={selectedAsset} className="w-full" onValueChange={setSelectedAsset}>
+          <TabsList className="grid grid-cols-2 h-auto p-1 gap-1 bg-muted/30">
+            {assetClasses.map((asset) => (
+              <TabsTrigger
+                key={asset.name}
+                value={asset.name}
+                className={cn(
+                  "flex items-center gap-2 p-3 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
+                  "transition-all duration-300"
+                )}
+              >
+                <span className={cn(
+                  "w-2 h-2 rounded-full",
+                  asset.risk >= 4 && "bg-rose-500",
+                  asset.risk === 3 && "bg-amber-500",
+                  asset.risk <= 2 && "bg-emerald-500"
+                )} />
+                <span className="text-sm font-medium">{asset.name}</span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {assetClasses.map((asset) => (
+            <TabsContent key={asset.name} value={asset.name} className="mt-6">
+              <div className="bg-white rounded-xl shadow-lg p-6 space-y-6">
+                <div className="space-y-2">
+                  <h3 className="text-xl font-semibold text-gray-900">{asset.name}</h3>
+                  <p className="text-sm text-gray-600">{asset.description}</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {parameters.map((param) => (
+                    <div
+                      key={param.name}
+                      className={cn(
+                        "p-4 rounded-xl",
+                        asset[param.key] <= 2 && "bg-emerald-50",
+                        asset[param.key] === 3 && "bg-amber-50",
+                        asset[param.key] >= 4 && "bg-rose-50"
+                      )}
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        {getParameterIcon(param.name)}
+                        <span className="text-sm font-medium">{param.name}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className={cn(
+                          "text-2xl font-bold",
+                          asset[param.key] <= 2 && "text-emerald-700",
+                          asset[param.key] === 3 && "text-amber-700",
+                          asset[param.key] >= 4 && "text-rose-700"
+                        )}>
+                          {asset[param.key]}
+                        </div>
+                        <span className="text-sm text-gray-600">
+                          {['Very Low', 'Low', 'Moderate', 'High', 'Very High'][asset[param.key] - 1]}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 pt-4 border-t">
+                  <div>
+                    <p className="text-sm text-gray-500">Min Investment</p>
+                    <p className="font-semibold text-gray-900">{asset.minInvestment}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Time Horizon</p>
+                    <p className="font-semibold text-gray-900">{asset.timeHorizon}</p>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t">
+                  <p className="text-sm text-gray-500 mb-2">Suitable for:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {asset.suitableFor.map((investor) => (
+                      <span
+                        key={investor}
+                        className="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-700"
+                      >
+                        {investor}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
+      </div>
+
+      {/* Desktop View - Keep existing matrix view but with some enhancements */}
+      <div className="hidden md:block">
+        <div className="bg-white rounded-2xl shadow-xl p-8">
           {/* Matrix Header */}
           <div className="grid grid-cols-[280px,1fr] gap-8">
             <div className="font-semibold text-xl text-gray-900">Asset Class</div>
             <div className="grid grid-cols-4 gap-8">
               {parameters.map((param) => (
-                <div key={param.name} className="font-medium text-center text-gray-700">
-                  {param.name}
+                <div key={param.name} className="flex items-center justify-center gap-2">
+                  {getParameterIcon(param.name)}
+                  <span className="font-medium text-gray-700">{param.name}</span>
                 </div>
               ))}
             </div>
@@ -248,6 +358,7 @@ export function AssetClassMatrix() {
                           <span className="font-medium text-gray-900 hover:text-gray-600 transition-colors">
                             {assetClass.name}
                           </span>
+                          <ChevronRight className="h-4 w-4 text-gray-400" />
                         </div>
                       </TooltipTrigger>
                       <TooltipContent side="right" className="max-w-xs bg-white/95 backdrop-blur-sm border-none shadow-2xl rounded-xl p-4">
@@ -256,14 +367,16 @@ export function AssetClassMatrix() {
                           <p className="text-sm text-gray-600">{assetClass.description}</p>
                           <div className="pt-3 border-t border-gray-100">
                             <p className="font-medium text-gray-900 mb-2">Suitable for:</p>
-                            <ul className="space-y-1">
+                            <div className="flex flex-wrap gap-2">
                               {assetClass.suitableFor.map((investor) => (
-                                <li key={investor} className="text-sm text-gray-600 flex items-center gap-2">
-                                  <span className="w-1 h-1 rounded-full bg-gray-400" />
+                                <span
+                                  key={investor}
+                                  className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-700"
+                                >
                                   {investor}
-                                </li>
+                                </span>
                               ))}
-                            </ul>
+                            </div>
                           </div>
                         </div>
                       </TooltipContent>
@@ -286,38 +399,38 @@ export function AssetClassMatrix() {
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Legend */}
-      <div className="bg-white rounded-xl p-6 shadow-lg">
-        <p className="font-medium text-gray-900 mb-4">Risk Level Indicators</p>
-        <div className="flex flex-wrap gap-6">
-          {[1, 2, 3, 4, 5].map((value) => (
-            <div key={value} className="flex items-center gap-3">
-              <div
-                className={cn(
-                  "w-8 h-8 rounded-lg flex items-center justify-center relative overflow-hidden",
-                  value === 1 && "bg-gradient-to-br from-emerald-50 to-emerald-200",
-                  value === 2 && "bg-gradient-to-br from-green-50 to-green-200",
-                  value === 3 && "bg-gradient-to-br from-amber-50 to-amber-200",
-                  value === 4 && "bg-gradient-to-br from-orange-50 to-orange-200",
-                  value === 5 && "bg-gradient-to-br from-rose-50 to-rose-200"
-                )}
-              >
-                <span className={cn(
-                  "text-sm font-medium",
-                  value === 1 && "text-emerald-700",
-                  value === 2 && "text-green-700",
-                  value === 3 && "text-amber-700",
-                  value === 4 && "text-orange-700",
-                  value === 5 && "text-rose-700"
-                )}>{value}</span>
+        {/* Legend */}
+        <div className="mt-8 bg-white rounded-xl p-6 shadow-lg">
+          <p className="font-medium text-gray-900 mb-4">Risk Level Indicators</p>
+          <div className="flex flex-wrap gap-6">
+            {[1, 2, 3, 4, 5].map((value) => (
+              <div key={value} className="flex items-center gap-3">
+                <div
+                  className={cn(
+                    "w-8 h-8 rounded-lg flex items-center justify-center relative overflow-hidden",
+                    value === 1 && "bg-gradient-to-br from-emerald-50 to-emerald-200",
+                    value === 2 && "bg-gradient-to-br from-green-50 to-green-200",
+                    value === 3 && "bg-gradient-to-br from-amber-50 to-amber-200",
+                    value === 4 && "bg-gradient-to-br from-orange-50 to-orange-200",
+                    value === 5 && "bg-gradient-to-br from-rose-50 to-rose-200"
+                  )}
+                >
+                  <span className={cn(
+                    "text-sm font-medium",
+                    value === 1 && "text-emerald-700",
+                    value === 2 && "text-green-700",
+                    value === 3 && "text-amber-700",
+                    value === 4 && "text-orange-700",
+                    value === 5 && "text-rose-700"
+                  )}>{value}</span>
+                </div>
+                <span className="text-sm text-gray-600">
+                  {['Very Low', 'Low', 'Moderate', 'High', 'Very High'][value - 1]}
+                </span>
               </div>
-              <span className="text-sm text-gray-600">
-                {['Very Low', 'Low', 'Moderate', 'High', 'Very High'][value - 1]}
-              </span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
