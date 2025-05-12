@@ -32,20 +32,23 @@ export default function Home() {
             <Logo />
           </Link>
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="#products" className="text-sm font-medium hover:text-primary">
+            <Link href="#products" className="text-sm font-medium hover:text-primary scroll-smooth transition-colors">
               Products
             </Link>
-            <Link href="#comparison" className="text-sm font-medium hover:text-primary">
+            <Link href="#comparison" className="text-sm font-medium hover:text-primary scroll-smooth transition-colors">
               Comparison
             </Link>
-            <Link href="#why-us" className="text-sm font-medium hover:text-primary">
+            <Link href="#why-us" className="text-sm font-medium hover:text-primary scroll-smooth transition-colors">
               Why Us
             </Link>
-            <Link href="#education" className="text-sm font-medium hover:text-primary">
+            <Link href="#education" className="text-sm font-medium hover:text-primary scroll-smooth transition-colors">
               Education
             </Link>
-            <Link href="#insights" className="text-sm font-medium hover:text-primary">
+            <Link href="#insights" className="text-sm font-medium hover:text-primary scroll-smooth transition-colors">
               Insights
+            </Link>
+            <Link href="#tools" className="text-sm font-medium hover:text-primary scroll-smooth transition-colors">
+              Financial Tools Suite
             </Link>
           </nav>
           <div className="flex items-center gap-4">
