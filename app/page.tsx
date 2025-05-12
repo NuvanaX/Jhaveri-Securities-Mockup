@@ -32,9 +32,6 @@ export default function Home() {
             <Logo />
           </Link>
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="#products" className="text-sm font-medium hover:text-primary scroll-smooth transition-colors">
-              Products
-            </Link>
             <Link href="#comparison" className="text-sm font-medium hover:text-primary scroll-smooth transition-colors">
               Comparison
             </Link>
@@ -66,31 +63,62 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden min-h-[90vh] flex items-center">
           <AnimatedGradient className="absolute inset-0 z-0" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/20 to-background z-[1]" />
           <div className="container relative z-10 py-20 md:py-32">
             <div className="mx-auto max-w-4xl text-center">
-              <h1 className="font-serif text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+              <div className="inline-block mb-6">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                  </span>
+                  <span className="text-sm font-medium text-primary">Trusted by 2500+ Investors</span>
+                </div>
+              </div>
+              <h1 className="font-serif text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground/80 to-foreground">
                 Curated Financial Products for Visionary Investors
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground md:text-xl">
-                PMS, AIF, and GIFT City investments—all in one place
+              <p className="mt-6 text-lg text-muted-foreground md:text-xl max-w-2xl mx-auto">
+                PMS, AIF, and GIFT City investments—all in one place. Expert guidance for your wealth journey.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-medium px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-medium px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
                 >
-                  Schedule Free Consultation
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                  <span className="relative">
+                    Schedule Free Consultation
+                    <ArrowRight className="ml-2 h-5 w-5 inline-block" />
+                  </span>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto backdrop-blur-sm bg-background/50 hover:bg-background/70 transition-all"
+                  className="w-full sm:w-auto backdrop-blur-sm bg-background/50 hover:bg-background/70 transition-all border-primary/20 hover:border-primary/40"
                 >
                   Download Investment Guide
                 </Button>
+              </div>
+              <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-3xl mx-auto">
+                <div className="text-center">
+                  <div className="font-serif text-2xl font-bold text-primary">₹5000Cr+</div>
+                  <div className="text-sm text-muted-foreground mt-1">Assets Managed</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-serif text-2xl font-bold text-primary">2500+</div>
+                  <div className="text-sm text-muted-foreground mt-1">Happy Clients</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-serif text-2xl font-bold text-primary">25+</div>
+                  <div className="text-sm text-muted-foreground mt-1">Years Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-serif text-2xl font-bold text-primary">50+</div>
+                  <div className="text-sm text-muted-foreground mt-1">Investment Experts</div>
+                </div>
               </div>
             </div>
           </div>
