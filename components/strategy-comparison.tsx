@@ -15,7 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { Info } from 'lucide-react';
+import { Info, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const comparisonData = [
@@ -71,6 +71,15 @@ const comparisonData = [
 
 export function StrategyComparison() {
   const [activeFeature, setActiveFeature] = useState<string | null>(null);
+  const [expandedFeature, setExpandedFeature] = useState<string | null>(null);
+
+  const toggleFeature = (feature: string) => {
+    if (expandedFeature === feature) {
+      setExpandedFeature(null);
+    } else {
+      setExpandedFeature(feature);
+    }
+  };
 
   return (
     <div className="w-full space-y-6 py-8">
@@ -82,36 +91,51 @@ export function StrategyComparison() {
           <div 
             key={item.feature}
             className={cn(
-              "p-4 rounded-lg border",
-              activeFeature === item.feature ? "bg-muted" : "bg-background"
+              "rounded-lg border overflow-hidden",
+              expandedFeature === item.feature ? "bg-muted/50" : "bg-background"
             )}
-            onClick={() => setActiveFeature(item.feature)}
           >
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="font-semibold">{item.feature}</h3>
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Info className="h-4 w-4 text-muted-foreground" />
-                  </TooltipTrigger>
-                  <TooltipContent>{item.tooltip}</TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+            <div 
+              className="p-4 cursor-pointer"
+              onClick={() => toggleFeature(item.feature)}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center">
+                  <div className="flex-1 min-w-[150px]">
+                    <h3 className="font-semibold">{item.feature}</h3>
+                  </div>
+                  <div className="flex items-center justify-center w-6">
+                    <Info className="h-4 w-4 text-primary" />
+                  </div>
+                </div>
+                <div className="flex items-center justify-center w-6">
+                  {expandedFeature === item.feature ? (
+                    <ChevronUp className="h-5 w-5 text-muted-foreground" />
+                  ) : (
+                    <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                  )}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <div>
+                  <span className="font-medium">Mutual Funds:</span> {item.mutualFunds}
+                </div>
+                <div>
+                  <span className="font-medium">PMS:</span> {item.pms}
+                </div>
+                <div>
+                  <span className="font-medium">AIF:</span> {item.aif}
+                </div>
+                <div>
+                  <span className="font-medium">SIF:</span> {item.sif}
+                </div>
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <div>
-                <span className="font-medium">Mutual Funds:</span> {item.mutualFunds}
+            {expandedFeature === item.feature && (
+              <div className="px-4 pb-4 pt-2 bg-muted/30 border-t">
+                <p className="text-sm text-muted-foreground">{item.tooltip}</p>
               </div>
-              <div>
-                <span className="font-medium">PMS:</span> {item.pms}
-              </div>
-              <div>
-                <span className="font-medium">AIF:</span> {item.aif}
-              </div>
-              <div>
-                <span className="font-medium">SIF:</span> {item.sif}
-              </div>
-            </div>
+            )}
           </div>
         ))}
       </div>
@@ -139,16 +163,30 @@ export function StrategyComparison() {
                 onClick={() => setActiveFeature(item.feature)}
               >
                 <TableCell className="font-medium">
-                  <div className="flex items-center gap-2">
-                    {item.feature}
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                          <Info className="h-4 w-4 text-muted-foreground" />
-                        </TooltipTrigger>
-                        <TooltipContent>{item.tooltip}</TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                  <div className="flex items-center">
+                    <div className="flex-1 min-w-[150px]">
+                      {item.feature}
+                    </div>
+                    <div className="flex items-center justify-center w-6">
+                      <TooltipProvider delayDuration={0}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <button 
+                              className="p-1 hover:bg-muted rounded-full transition-colors"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <Info className="h-4 w-4 text-primary hover:text-primary/80" />
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent 
+                            side="right" 
+                            className="bg-primary text-primary-foreground p-3 text-sm max-w-[300px]"
+                          >
+                            {item.tooltip}
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
                   </div>
                 </TableCell>
                 <TableCell>{item.mutualFunds}</TableCell>
