@@ -49,8 +49,8 @@ export default function Home() {
             </Link>
           </nav>
           <div className="flex items-center gap-4">
-            <Button variant="outline" className="hidden md:flex">
-              Login
+            <Button variant="outline" className="hidden md:flex" asChild>
+              <Link href="/login">Login</Link>
             </Button>
             <Button className="hidden md:flex">Schedule a Consultation</Button>
             <Button variant="ghost" size="icon" className="md:hidden">
@@ -428,44 +428,44 @@ export default function Home() {
                 <h3 className="font-serif text-lg md:text-xl font-bold mb-4">Mutual Funds vs PMS vs AIF vs SIF</h3>
                 <div className="space-y-4 overflow-x-auto">
                   <div className="min-w-[500px] md:min-w-0">
-                    <div className="grid grid-cols-5 gap-2 text-sm font-medium">
-                      <div className="col-span-1"></div>
-                      <div className="col-span-1 text-center">MF</div>
-                      <div className="col-span-1 text-center">PMS</div>
-                      <div className="col-span-1 text-center">AIF</div>
-                      <div className="col-span-1 text-center">SIF</div>
-                    </div>
+                  <div className="grid grid-cols-5 gap-2 text-sm font-medium">
+                    <div className="col-span-1"></div>
+                    <div className="col-span-1 text-center">MF</div>
+                    <div className="col-span-1 text-center">PMS</div>
+                    <div className="col-span-1 text-center">AIF</div>
+                    <div className="col-span-1 text-center">SIF</div>
+                  </div>
 
                     <div className="grid grid-cols-5 gap-2 text-sm border-b pb-2 mt-2">
-                      <div className="col-span-1">Min. Investment</div>
-                      <div className="col-span-1 text-center">₹500</div>
-                      <div className="col-span-1 text-center">₹50L</div>
-                      <div className="col-span-1 text-center">₹1Cr</div>
-                      <div className="col-span-1 text-center">$100K</div>
-                    </div>
+                    <div className="col-span-1">Min. Investment</div>
+                    <div className="col-span-1 text-center">₹500</div>
+                    <div className="col-span-1 text-center">₹50L</div>
+                    <div className="col-span-1 text-center">₹1Cr</div>
+                    <div className="col-span-1 text-center">$100K</div>
+                  </div>
 
                     <div className="grid grid-cols-5 gap-2 text-sm border-b pb-2 mt-2">
-                      <div className="col-span-1">Customization</div>
-                      <div className="col-span-1 text-center">None</div>
-                      <div className="col-span-1 text-center">High</div>
-                      <div className="col-span-1 text-center">Medium</div>
-                      <div className="col-span-1 text-center">Medium</div>
-                    </div>
+                    <div className="col-span-1">Customization</div>
+                    <div className="col-span-1 text-center">None</div>
+                    <div className="col-span-1 text-center">High</div>
+                    <div className="col-span-1 text-center">Medium</div>
+                    <div className="col-span-1 text-center">Medium</div>
+                  </div>
 
                     <div className="grid grid-cols-5 gap-2 text-sm border-b pb-2 mt-2">
-                      <div className="col-span-1">Taxation</div>
-                      <div className="col-span-1 text-center">LTCG/STCG</div>
-                      <div className="col-span-1 text-center">LTCG/STCG</div>
-                      <div className="col-span-1 text-center">Pass-through</div>
-                      <div className="col-span-1 text-center">Tax Adv.</div>
-                    </div>
+                    <div className="col-span-1">Taxation</div>
+                    <div className="col-span-1 text-center">LTCG/STCG</div>
+                    <div className="col-span-1 text-center">LTCG/STCG</div>
+                    <div className="col-span-1 text-center">Pass-through</div>
+                    <div className="col-span-1 text-center">Tax Adv.</div>
+                  </div>
 
                     <div className="grid grid-cols-5 gap-2 text-sm mt-2">
-                      <div className="col-span-1">Regulation</div>
-                      <div className="col-span-1 text-center">SEBI</div>
-                      <div className="col-span-1 text-center">SEBI</div>
-                      <div className="col-span-1 text-center">SEBI</div>
-                      <div className="col-span-1 text-center">IFSCA</div>
+                    <div className="col-span-1">Regulation</div>
+                    <div className="col-span-1 text-center">SEBI</div>
+                    <div className="col-span-1 text-center">SEBI</div>
+                    <div className="col-span-1 text-center">SEBI</div>
+                    <div className="col-span-1 text-center">IFSCA</div>
                     </div>
                   </div>
                 </div>
@@ -480,34 +480,34 @@ export default function Home() {
                 <h3 className="font-serif text-lg md:text-xl font-bold mb-4">Active vs Passive Investing</h3>
                 <div className="space-y-4 overflow-x-auto">
                   <div className="min-w-[400px] md:min-w-0">
-                    <div className="grid grid-cols-3 gap-2 text-sm font-medium">
-                      <div className="col-span-1"></div>
-                      <div className="col-span-1 text-center">Active</div>
-                      <div className="col-span-1 text-center">Passive</div>
-                    </div>
+                  <div className="grid grid-cols-3 gap-2 text-sm font-medium">
+                    <div className="col-span-1"></div>
+                    <div className="col-span-1 text-center">Active</div>
+                    <div className="col-span-1 text-center">Passive</div>
+                  </div>
 
                     <div className="grid grid-cols-3 gap-2 text-sm border-b pb-2 mt-2">
-                      <div className="col-span-1">Management Style</div>
-                      <div className="col-span-1 text-center">Hands-on</div>
-                      <div className="col-span-1 text-center">Index-based</div>
-                    </div>
+                    <div className="col-span-1">Management Style</div>
+                    <div className="col-span-1 text-center">Hands-on</div>
+                    <div className="col-span-1 text-center">Index-based</div>
+                  </div>
 
                     <div className="grid grid-cols-3 gap-2 text-sm border-b pb-2 mt-2">
-                      <div className="col-span-1">Fees</div>
-                      <div className="col-span-1 text-center">Higher</div>
-                      <div className="col-span-1 text-center">Lower</div>
-                    </div>
+                    <div className="col-span-1">Fees</div>
+                    <div className="col-span-1 text-center">Higher</div>
+                    <div className="col-span-1 text-center">Lower</div>
+                  </div>
 
                     <div className="grid grid-cols-3 gap-2 text-sm border-b pb-2 mt-2">
-                      <div className="col-span-1">Alpha Generation</div>
-                      <div className="col-span-1 text-center">Possible</div>
-                      <div className="col-span-1 text-center">Not Possible</div>
-                    </div>
+                    <div className="col-span-1">Alpha Generation</div>
+                    <div className="col-span-1 text-center">Possible</div>
+                    <div className="col-span-1 text-center">Not Possible</div>
+                  </div>
 
                     <div className="grid grid-cols-3 gap-2 text-sm mt-2">
-                      <div className="col-span-1">Risk Management</div>
-                      <div className="col-span-1 text-center">Customized</div>
-                      <div className="col-span-1 text-center">Market Risk</div>
+                    <div className="col-span-1">Risk Management</div>
+                    <div className="col-span-1 text-center">Customized</div>
+                    <div className="col-span-1 text-center">Market Risk</div>
                     </div>
                   </div>
                 </div>
